@@ -107,7 +107,7 @@ if (!empty($new_users)){
 	$message = "";
 
 	foreach($new_users as $key => $value){
-		$message += "$key has joined the teamspeak\n";
+		$message = $message . "$key has joined the teamspeak\n";
 	}
 
 	send_message($message, $slack_channel, $post_url);
@@ -116,8 +116,8 @@ if (!empty($new_users)){
 if (!empty($left_users)){
 	$message = "";
 
-	foreach($new_users as $key => $value){
-		$message += "$key has left the teamspeak\n";
+	foreach($left_users as $key => $value){
+		$message = $message . " $left_users[$key]has left the teamspeak\n";
 	}
 	
 	send_message($message, $slack_channel, $post_url);
@@ -136,8 +136,7 @@ if(count($tsAdmin->getDebugLog()) > 0) {
 # I think it's a different namespace? But who knows cause php
 function send_message($message, $slack_channel, $post_url){
 // Taken from this thread: 
-// http://stackoverflow.com/questions/6213509/send-json-post-using-php
-	print("here");	
+	// http://stackoverflow.com/questions/6213509/send-json-post-using-php
 	$data = array(
 		'channel'	=> $slack_channel,
 		'username'	=> 'webhookbot',
