@@ -29,7 +29,6 @@
 
 /*-------SETTINGS-------*/
 $ini_array = parse_ini_file("config.ini");
-
 $ts3_ip = $ini_array['ts3_ip'];
 $ts3_queryport = $ini_array['ts3_queryport'];
 $ts3_user = $ini_array['ts3_user'];
@@ -56,7 +55,6 @@ $left_users = array();
 $previous_users  = file($users_file, 
 	FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
-
 if($tsAdmin->getElement('success', $tsAdmin->connect())) {
 
 	# login as serveradmin
@@ -79,10 +77,9 @@ if($tsAdmin->getElement('success', $tsAdmin->connect())) {
 		}
 
 		fwrite($current_users_file, "$user_name\n");
-
+		print var_dump($previous_users);
 		if(in_array($user_name, $previous_users)){
-			# Don't have to worry about it now
-			unset($previous_users, $user_name);
+			$previous_users = array_diff($previous_users, array( $user_name ));
 		}else{
 			# New User
 			$new_users[$user_name] = "";
