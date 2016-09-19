@@ -117,7 +117,7 @@ if (!empty($left_users)){
 	$message = "";
 
 	foreach($left_users as $key => $value){
-		$message = $message . " $left_users[$key]has left the teamspeak\n";
+		$message = $message . "$left_users[$key] has left the teamspeak\n";
 	}
 	
 	send_message($message, $slack_channel, $post_url);
