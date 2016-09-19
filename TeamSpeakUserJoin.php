@@ -77,7 +77,6 @@ if($tsAdmin->getElement('success', $tsAdmin->connect())) {
 		}
 
 		fwrite($current_users_file, "$user_name\n");
-		print var_dump($previous_users);
 		if(in_array($user_name, $previous_users)){
 			$previous_users = array_diff($previous_users, array( $user_name ));
 		}else{
